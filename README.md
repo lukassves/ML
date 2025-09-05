@@ -1,5 +1,9 @@
 # Quantitative ML Trading Framework
 
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![License](https://img.shields.io/badge/license-All%20rights%20reserved-red)
+![Status](https://img.shields.io/badge/status-Active-brightgreen)
+
 A full end-to-end machine learning pipeline for **cryptocurrency trading signals**.  
 It combines **high-frequency OHLCV + order-flow (OF)** features, multi-stage data processing, supervised model training (**XGBoost 2D**), and realistic trade simulation with leverage and fees.
 
@@ -39,7 +43,7 @@ Black-box opinion (predict_proba + gates)
 
 Stage-2 simulation with leverage/fees
 
-⚡ Features
+## ⚡ Features
 Parallelized ingestion: full CPU utilization via multiprocessing + joblib (loky)
 
 Memory guards: RAM estimation, chunked I/O, safe multiprocessing (freeze_support)
@@ -63,8 +67,6 @@ PostgreSQL (for persistence of large datasets)
 
 Install dependencies:
 
-bash
-Copy code
 pip install -r requirements.txt
 Core packages:
 ccxt, pandas, numpy, xgboost, scikit-learn,
@@ -75,8 +77,6 @@ joblib, tqdm, psutil, pympler, scipy, shap, matplotlib.
 Collects OHLCV + OF data and generates enriched feature files.
 (Default loop: 8-month chunks from 2022-11-10 → today)
 
-bash
-Copy code
 python looperis_data.py
 Outputs:
 
@@ -85,21 +85,22 @@ COMBINED_BTC_USDT_part*.csv — merged raw data
 WITH_BTC_USDT_1m_part*.csv — enriched features (for Stage 2)
 
 2. Stage 2 — Labeling, Training & Simulation
-bash
-Copy code
+
 python AI2D.py
 Configurable parameters (in AI2D.py):
 
-Param	Description	Example
-tp_values	Take-profit targets (% move)	[0.10]
-sl_values	Stop-loss targets (% move)	[0.10]
-lookahead_values	Bars to look ahead for TP/SL	[20]
-initial_balance	Starting balance in simulation	300
-leverage	Leverage factor	25
-fee	Trading fee per side (decimal)	0.0006
-max_used_balance	Cap for position sizing	450
-n_jobs	Parallel workers	16
-batch_size	Training batch size	1024
+| Param            | Description                        | Example |
+|------------------|------------------------------------|---------|
+| tp_values        | Take-profit targets (% move)       | [0.10]  |
+| sl_values        | Stop-loss targets (% move)         | [0.10]  |
+| lookahead_values | Bars to look ahead for TP/SL       | [20]    |
+| initial_balance  | Starting balance in simulation     | 300     |
+| leverage         | Leverage factor                    | 25      |
+| fee              | Trading fee per side (decimal)     | 0.0006  |
+| max_used_balance | Cap for position sizing            | 450     |
+| n_jobs           | Parallel workers                   | 16      |
+| batch_size       | Training batch size                | 1024    |
+
 
 Outputs (by category):
 
@@ -112,8 +113,6 @@ Reports: mastery_*.csv, black_box_opinion_*.csv
 Simulation: preds_log_*.csv, simuliacijos_outputas_*.csv, feedback_bank_*.csv
 
 📊 Example Run
-bash
-Copy code
 # Stage 1: Generate features
 python looperis_data.py
 
@@ -137,8 +136,6 @@ Aggregation: run mastery across multiple parts for stronger signal insights.
 Out-of-sample checks: set OOS_FILE for validation preview.
 
 📂 Repo Structure
-bash
-Copy code
 .
 ├── looperis_data.py         # Stage 1: CCXT + OF → features
 ├── AI2D.py                  # Stage 2: Labels, training, simulation
