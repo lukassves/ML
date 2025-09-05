@@ -466,4 +466,4 @@ def run_loop():
 
         start = loop_end + timedelta(days=1)
 if __name__ == "__main__":
-    run_loop() # ahahhahah realizuojam nested functions kurias mokemes pries daug metu savo knygoje
+    run_loop() 

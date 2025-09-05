@@ -1,0 +1,22 @@
+# Core scientific stack
+pandas==2.2.2
+numpy==1.26.4
+scipy==1.13.1
+
+# Machine learning
+xgboost==2.1.1
+scikit-learn==1.5.1
+joblib==1.4.2
+
+# Data & exchange APIs
+ccxt==4.3.47
+python-dateutil==2.9.0.post0
+
+# Utilities
+tqdm==4.66.4
+psutil==5.9.8
+pympler==1.1
+
+# Explainability & plotting
+shap==0.46.0
+matplotlib==3.8.4
